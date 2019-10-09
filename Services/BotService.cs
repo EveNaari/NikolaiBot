@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Telegram.Bot;
 
 namespace NokilayBot.Services
 {
@@ -15,11 +17,9 @@ namespace NokilayBot.Services
             foreach (var bot in _config.BotInfo)
             {
                 Client.Add(bot.BotToken, new TelegramBotClient(bot.BotToken));
-                BotDomain.Add(bot.BotToken, bot.BotDomain);
             }
         }
 
         public Dictionary<string, TelegramBotClient> Client { get; } = new Dictionary<string, TelegramBotClient>();
-        public Dictionary<string, Guid> BotDomain { get; } = new Dictionary<string, Guid>();
     }
 }
